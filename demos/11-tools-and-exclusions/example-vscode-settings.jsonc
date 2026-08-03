@@ -1,0 +1,34 @@
+// Example workspace settings for agent context optimization.
+// Add to .vscode/settings.json (workspace) or User settings.
+//
+// files.exclude    -> hidden from explorer + index + agent search
+// search.exclude   -> visible in explorer, but not in agent search / grep
+// .gitignore       -> indirectly excludes from index + agent search (preferred for built artifacts)
+
+{
+  // Hide noisy generated paths from the workspace entirely.
+  "files.exclude": {
+    "**/.venv": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.ruff_cache": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/*.egg-info": true
+  },
+
+  // Keep visible in explorer (e.g. you want to open them manually),
+  // but don't let agent grep / search include them as context snippets.
+  "search.exclude": {
+    "**/*.lock": true,
+    "**/package-lock.json": true,
+    "**/poetry.lock": true,
+    "**/uv.lock": true,
+    "**/coverage": true,
+    "**/*.min.js": true,
+    "**/*.map": true,
+    "**/fixtures/large-*.json": true,
+    "**/snapshots": true
+  }
+}
